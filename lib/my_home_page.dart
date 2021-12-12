@@ -21,9 +21,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Positioned(
               top:0,
               left: 0,
-              height: 700,
+              height: 600,
               child: Container(
-                height: 700,
+                height: 500,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     image: DecorationImage(
