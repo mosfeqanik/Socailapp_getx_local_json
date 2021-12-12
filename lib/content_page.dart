@@ -1,5 +1,8 @@
+import 'dart:convert' show json;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({Key? key}) : super(key: key);
@@ -9,6 +12,36 @@ class ContentPage extends StatefulWidget {
 }
 
 class _ContentPageState extends State<ContentPage> {
+  List list = [];
+  List info = [];
+
+  _readData() async {
+    await DefaultAssetBundle.of(context)
+        .loadString("json/recent.json")
+        .then((s) {
+      setState(() {
+        list = json.decode(s);
+        print(list);
+      });
+    });
+    await DefaultAssetBundle.of(context)
+        .loadString("json/detail.json")
+        .then((s) {
+      setState(() {
+        info = json.decode(s);
+        print(info);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+    _readData();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -37,7 +70,7 @@ class _ContentPageState extends State<ContentPage> {
                       radius: 30,
                       backgroundImage: AssetImage("img/background.jpg"),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -69,8 +102,8 @@ class _ContentPageState extends State<ContentPage> {
                       height: 70,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xFFf3fafc)),
-                      child: Center(
+                          color: const Color(0xFFf3fafc)),
+                      child: const Center(
                         child: Icon(
                           Icons.notifications,
                           color: Color(0xFF69c5df),
@@ -82,7 +115,7 @@ class _ContentPageState extends State<ContentPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             //popular contest
@@ -119,17 +152,20 @@ class _ContentPageState extends State<ContentPage> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             //list
-            Container(
+            SizedBox(
               height: 170,
               child: PageView.builder(
                   controller: PageController(viewportFraction: 0.88),
-                  itemCount: 4,
+                  itemCount: info.length,
                   itemBuilder: (_, i) {
                     return GestureDetector(
+                      onTap: (){
+                        Get.toNamed('/detail/');
+                      },
                       child: Container(
                         padding: const EdgeInsets.only(left: 20, top: 20),
                         height: 170,
@@ -142,37 +178,37 @@ class _ContentPageState extends State<ContentPage> {
                                 : const Color(0xFF9294cc)),
                         child: Column(
                           children: [
-                            Container(
-                                child: Row(
+                            Row(
                               children: [
-                                const Text(
-                                  "Title",
-                                  style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white),
-                                ),
-                                Expanded(child: Container())
+                             Text(
+                              info[i]["title"],
+                              style: const TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                            Expanded(child: Container())
                               ],
-                            )),
+                            ),
                             const SizedBox(height: 10),
-                            Container(
+                            SizedBox(
                               width: width,
-                              child: Text(
-                                "Text",
-                                style: TextStyle(
-                                    fontSize: 20, color: Color(0xFFb8eefc)),
+                              child: AutoSizeText(
+                                info[i]["text"],
+                                style: const TextStyle(
+                                    fontSize: 12, color: Color(0xFFb8eefc),),
+                                maxLines: 3,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
-                            Divider(
+                            const Divider(
                               thickness: 1.0,
                             ),
                             Row(children: [
                               for (int i = 0; i < 4; i++)
-                                Container(
+                                SizedBox(
                                   width: 50,
                                   height: 50,
                                   child: Container(
@@ -180,7 +216,7 @@ class _ContentPageState extends State<ContentPage> {
                                         borderRadius: BorderRadius.circular(25),
                                         image: DecorationImage(
                                             image: AssetImage(
-                                                "img/background.jpg"),
+                                                info[i]["img"]),
                                             fit: BoxFit.cover)),
                                   ),
                                 )
@@ -191,7 +227,7 @@ class _ContentPageState extends State<ContentPage> {
                     );
                   }),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             //recent contests
@@ -199,7 +235,7 @@ class _ContentPageState extends State<ContentPage> {
               padding: const EdgeInsets.only(left: 25, right: 25),
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     "Recent Contests",
                     style: TextStyle(
                         color: Color(0xFF1f2326),
@@ -207,14 +243,14 @@ class _ContentPageState extends State<ContentPage> {
                         decoration: TextDecoration.none),
                   ),
                   Expanded(child: Container()),
-                  Text(
+                  const Text(
                     "Show all",
                     style: TextStyle(
                         color: Color(0xFFcfd5b3),
                         fontSize: 15,
                         decoration: TextDecoration.none),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Container(
@@ -228,7 +264,7 @@ class _ContentPageState extends State<ContentPage> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(
@@ -250,8 +286,7 @@ class _ContentPageState extends State<ContentPage> {
                               color: const Color(0xFFebf8fd),
                             ),
                             child: Container(
-                              padding:
-                                  const EdgeInsets.only(left: 5, right: 5),
+                              padding: const EdgeInsets.only(left: 5, right: 5),
                               child: Row(
                                 children: [
                                   const CircleAvatar(
