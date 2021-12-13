@@ -163,8 +163,11 @@ class _ContentPageState extends State<ContentPage> {
                   itemCount: info.length,
                   itemBuilder: (_, i) {
                     return GestureDetector(
-                      onTap: (){
-                        Get.toNamed('/detail/');
+                      onTap: () {
+                        Get.toNamed(
+                          '/detail/',
+                          arguments: {'title':info[i]["title"].toString()},
+                        );
                       },
                       child: Container(
                         padding: const EdgeInsets.only(left: 20, top: 20),
@@ -180,14 +183,14 @@ class _ContentPageState extends State<ContentPage> {
                           children: [
                             Row(
                               children: [
-                             Text(
-                              info[i]["title"],
-                              style: const TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                            Expanded(child: Container())
+                                Text(
+                                  info[i]["title"],
+                                  style: const TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white),
+                                ),
+                                Expanded(child: Container())
                               ],
                             ),
                             const SizedBox(height: 10),
@@ -196,7 +199,9 @@ class _ContentPageState extends State<ContentPage> {
                               child: AutoSizeText(
                                 info[i]["text"],
                                 style: const TextStyle(
-                                    fontSize: 12, color: Color(0xFFb8eefc),),
+                                  fontSize: 12,
+                                  color: Color(0xFFb8eefc),
+                                ),
                                 maxLines: 3,
                               ),
                             ),
@@ -215,8 +220,7 @@ class _ContentPageState extends State<ContentPage> {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
                                         image: DecorationImage(
-                                            image: AssetImage(
-                                                info[i]["img"]),
+                                            image: AssetImage(info[i]["img"]),
                                             fit: BoxFit.cover)),
                                   ),
                                 )
