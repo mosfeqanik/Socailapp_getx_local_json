@@ -37,7 +37,6 @@ class _ContentPageState extends State<ContentPage> {
   @override
   void initState() {
     // TODO: implement initState
-
     super.initState();
     _readData();
   }
@@ -284,7 +283,7 @@ class _ContentPageState extends State<ContentPage> {
                     child: ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: 4,
+                        itemCount: list.length,
                         itemBuilder: (_, i) {
                           return Container(
                             width: width,
@@ -299,12 +298,12 @@ class _ContentPageState extends State<ContentPage> {
                               padding: const EdgeInsets.only(left: 5, right: 5),
                               child: Row(
                                 children: [
-                                  const CircleAvatar(
+                                   CircleAvatar(
                                     radius: 30,
                                     backgroundImage:
-                                        AssetImage("img/background.jpg"),
+                                        AssetImage(list[i]['img']),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Column(
@@ -313,20 +312,22 @@ class _ContentPageState extends State<ContentPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Status",
-                                        style: TextStyle(
-                                            color: Color(0xFFfdebb2),
+                                        list[i]['status'],
+                                        style: const TextStyle(
+                                            color: Colors.deepOrange,
                                             fontSize: 10,
                                             decoration: TextDecoration.none),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       SizedBox(
-                                        width: 90,
-                                        child: Text(
-                                          "Text",
-                                          style: TextStyle(
+                                        width: 160,
+                                        child: AutoSizeText(
+                                          list[i]['text'],
+                                          minFontSize: 15,
+                                          maxLines: 2,
+                                          style: const TextStyle(
                                               color: Color(0xFF3b3f42),
                                               fontSize: 18,
                                               decoration: TextDecoration.none),
@@ -335,12 +336,12 @@ class _ContentPageState extends State<ContentPage> {
                                     ],
                                   ),
                                   Expanded(child: Container()),
-                                  Container(
+                                  SizedBox(
                                     width: 70,
                                     height: 70,
                                     child: Text(
-                                      "Time",
-                                      style: TextStyle(
+                                      list[i]['time'],
+                                      style: const TextStyle(
                                           fontSize: 10,
                                           decoration: TextDecoration.none,
                                           color: Color(0xFFb2b8bb)),
