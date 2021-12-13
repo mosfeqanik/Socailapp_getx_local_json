@@ -166,7 +166,13 @@ class _ContentPageState extends State<ContentPage> {
                       onTap: () {
                         Get.toNamed(
                           '/detail/',
-                          arguments: {'title':info[i]["title"].toString()},
+                          arguments: {'title':info[i]['title'].toString(),
+                            'name':info[i]['name'].toString(),
+                            'text':info[i]['text'].toString(),
+                            'img':info[i]['img'].toString(),
+                            'time':info[i]['time'].toString(),
+                            'prize':info[i]['prize'].toString(),
+                          },
                         );
                       },
                       child: Container(
