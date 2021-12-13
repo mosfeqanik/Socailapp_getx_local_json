@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,26 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+
+  List imgList = [];
+
+  _readData() async {
+    await DefaultAssetBundle.of(context)
+        .loadString("json/img.json")
+        .then((s) {
+      setState(() {
+        imgList = json.decode(s);
+        print(imgList);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _readData();
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -274,7 +296,7 @@ class _DetailPageState extends State<DetailPage> {
             ),
             //images
             Stack(children: [
-              for (int i = 0; i < 5; i++)
+              for (int i = 0; i < imgList.length; i++)
                 Positioned(
                   top: 480,
                   left: (20 + i * 35).toDouble(),
@@ -283,8 +305,8 @@ class _DetailPageState extends State<DetailPage> {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
-                        image: const DecorationImage(
-                            image: AssetImage("img/background.jpg"),
+                        image:  DecorationImage(
+                            image: AssetImage(imgList[i]['img']),
                             fit: BoxFit.cover)),
                   ),
                 )
