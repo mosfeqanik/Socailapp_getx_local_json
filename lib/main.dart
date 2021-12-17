@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'content_page.dart';
 import 'my_detail_page.dart';
 import 'my_home_page.dart';
 

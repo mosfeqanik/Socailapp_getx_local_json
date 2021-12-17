@@ -1,8 +1,10 @@
 import 'dart:convert' show json;
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_practice/recent_contest_page.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({Key? key}) : super(key: key);
@@ -133,20 +135,29 @@ class _ContentPageState extends State<ContentPage> {
                   const Text(
                     "Show all",
                     style: TextStyle(
-                        color: Color(0xFFcfd5b3),
+                        color: Colors.deepOrange,
                         fontSize: 15,
                         decoration: TextDecoration.none),
                   ),
                   const SizedBox(
                     width: 5,
                   ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(()=>RecentContest());
+                    },
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFFfdc33c)),
-                    child: GestureDetector(),
+                        color: Colors.deepOrange,
+                      ),
+                      child: Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: Colors.white,
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -165,12 +176,13 @@ class _ContentPageState extends State<ContentPage> {
                       onTap: () {
                         Get.toNamed(
                           '/detail/',
-                          arguments: {'title':info[i]['title'].toString(),
-                            'name':info[i]['name'].toString(),
-                            'text':info[i]['text'].toString(),
-                            'img':info[i]['img'].toString(),
-                            'time':info[i]['time'].toString(),
-                            'prize':info[i]['prize'].toString(),
+                          arguments: {
+                            'title': info[i]['title'].toString(),
+                            'name': info[i]['name'].toString(),
+                            'text': info[i]['text'].toString(),
+                            'img': info[i]['img'].toString(),
+                            'time': info[i]['time'].toString(),
+                            'prize': info[i]['prize'].toString(),
                           },
                         );
                       },
@@ -255,20 +267,29 @@ class _ContentPageState extends State<ContentPage> {
                   const Text(
                     "Show all",
                     style: TextStyle(
-                        color: Color(0xFFcfd5b3),
+                        color: Colors.deepOrange,
                         fontSize: 15,
                         decoration: TextDecoration.none),
                   ),
                   const SizedBox(
                     width: 5,
                   ),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(()=>RecentContest());
+                    },
+                    child: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xFFfdc33c)),
-                    child: GestureDetector(),
+                        color: Colors.deepOrange,
+                      ),
+                      child: Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: Colors.white,
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -298,10 +319,9 @@ class _ContentPageState extends State<ContentPage> {
                               padding: const EdgeInsets.only(left: 5, right: 5),
                               child: Row(
                                 children: [
-                                   CircleAvatar(
+                                  CircleAvatar(
                                     radius: 30,
-                                    backgroundImage:
-                                        AssetImage(list[i]['img']),
+                                    backgroundImage: AssetImage(list[i]['img']),
                                   ),
                                   const SizedBox(
                                     width: 5,

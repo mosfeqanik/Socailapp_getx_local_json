@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_practice/detail_controller.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -38,6 +39,7 @@ class _DetailPageState extends State<DetailPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     int _currentIndex = 0;
+    final DetailsController Fav = Get.put(DetailsController());
     return Scaffold(
       body: Container(
         color: const Color(0xFFc5e5f3),
@@ -47,8 +49,9 @@ class _DetailPageState extends State<DetailPage> {
                 top: 50,
                 left: 10,
                 child: IconButton(
-                  onPressed: () => Get.back(),
-                  icon: const Icon(Icons.arrow_back_ios),
+                  onPressed: () => Get.toNamed('/'),
+                  color: Colors.black ,
+                  icon: Icon(Icons.home_outlined,size: 30,color: Colors.white,),
                 )),
             Positioned(
               top: 100,
@@ -317,14 +320,17 @@ class _DetailPageState extends State<DetailPage> {
                 left: 25,
                 child: Row(
                   children: [
-                    Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: const Color(0xFFfbc33e)),
-                        child: const Icon(Icons.favorite_border,
-                            color: Colors.white)),
+                    GestureDetector(
+                      onTap:()=> Fav.favCounter(),
+                      child: Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color(0xFFfbc33e)),
+                          child: const Icon(Icons.favorite_border,
+                              color: Colors.white)),
+                    ),
                     const SizedBox(
                       width: 10,
                     ),
