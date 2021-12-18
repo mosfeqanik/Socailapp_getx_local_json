@@ -6,14 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_practice/recent_contest_page.dart';
 
-class ContentPage extends StatefulWidget {
-  const ContentPage({Key? key}) : super(key: key);
+import 'components/heading_show_all.dart';
+import 'components/profile_info.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  _ContentPageState createState() => _ContentPageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _ContentPageState extends State<ContentPage> {
+class _HomePageState extends State<HomePage> {
   List list = [];
   List info = [];
 
@@ -63,105 +66,13 @@ class _ContentPageState extends State<ContentPage> {
                 borderRadius: BorderRadius.circular(20),
                 color: const Color(0xFFebf8fd),
               ),
-              child: Container(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 30,
-                      backgroundImage: AssetImage("img/background.jpg"),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          "James Smith",
-                          style: TextStyle(
-                              color: Color(0xFF3b3f42),
-                              fontSize: 18,
-                              decoration: TextDecoration.none),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "Top Level",
-                          style: TextStyle(
-                              color: Color(0xFFfdebb2),
-                              fontSize: 12,
-                              decoration: TextDecoration.none),
-                        ),
-                      ],
-                    ),
-                    Expanded(child: Container()),
-                    Container(
-                      width: 70,
-                      height: 70,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color(0xFFf3fafc)),
-                      child: const Center(
-                        child: Icon(
-                          Icons.notifications,
-                          color: Color(0xFF69c5df),
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              child: ProfileInfo(),
             ),
             const SizedBox(
               height: 10,
             ),
             //popular contest
-            Container(
-              padding: const EdgeInsets.only(left: 25, right: 25),
-              child: Row(
-                children: [
-                  const Text(
-                    "Popular Contest",
-                    style: TextStyle(
-                        color: Color(0xFF1f2326),
-                        fontSize: 20,
-                        decoration: TextDecoration.none),
-                  ),
-                  Expanded(child: Container()),
-                  const Text(
-                    "Show all",
-                    style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 15,
-                        decoration: TextDecoration.none),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(()=>RecentContest());
-                    },
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.deepOrange,
-                      ),
-                      child: Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            HeadlineShowAll(headlineTitle: "Popular Contest",showAllFunction:(){ Get.to(()=>RecentContest());}),
             const SizedBox(
               height: 10,
             ),
@@ -252,48 +163,7 @@ class _ContentPageState extends State<ContentPage> {
               height: 10,
             ),
             //recent contests
-            Container(
-              padding: const EdgeInsets.only(left: 25, right: 25),
-              child: Row(
-                children: [
-                  const Text(
-                    "Recent Contests",
-                    style: TextStyle(
-                        color: Color(0xFF1f2326),
-                        fontSize: 20,
-                        decoration: TextDecoration.none),
-                  ),
-                  Expanded(child: Container()),
-                  const Text(
-                    "Show all",
-                    style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 15,
-                        decoration: TextDecoration.none),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(()=>RecentContest());
-                    },
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.deepOrange,
-                      ),
-                      child: Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            HeadlineShowAll(headlineTitle: "Recent Contests",showAllFunction:(){ Get.to(()=>RecentContest());}),
             const SizedBox(
               height: 10,
             ),

@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_practice/content_page.dart';
+import 'package:getx_practice/views/home_page/home_page.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class SplashPage extends StatefulWidget {
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      onPressed: () => Get.to(() => const ContentPage()),
+                      onPressed: () => Get.to(() => const HomePage()),
                       child: const Text(
                         "Get started",
                         style: TextStyle(color: Colors.white),
