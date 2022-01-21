@@ -8,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
-      getPages: [GetPage(name:'/',page: ()=>SplashPage()),GetPage(name:'/detail',page: ()=>DetailPage())],
+      getPages: [GetPage(name:'/',page: ()=>const SplashPage()),GetPage(name:'/detail',page: ()=>const DetailPage())],
     );
   }
 }
