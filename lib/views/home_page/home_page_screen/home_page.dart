@@ -4,10 +4,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_practice/recent_contest_page.dart';
+import 'package:getx_practice/views/recent_contest_page/recent_contest_page_screen/recent_contest_page.dart';
 
-import 'components/heading_show_all.dart';
-import 'components/profile_info.dart';
+import '../components/heading_show_all.dart';
+import '../components/profile_info.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'views/detail_page/detail_page.dart';
+import 'package:getx_practice/views/detail_page/detail_page_screen/detail_page.dart';
 import 'views/splash_page.dart';
 
 void main() {
