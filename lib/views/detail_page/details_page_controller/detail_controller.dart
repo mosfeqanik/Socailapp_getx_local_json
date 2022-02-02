@@ -10,7 +10,6 @@ Get.snackbar("Loved it", "You already Loved it");
     }else{
       fav.value++;
       Get.snackbar("Loved it", "You just Loved it");
-
     }
   }
 
